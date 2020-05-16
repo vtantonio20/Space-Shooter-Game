@@ -296,27 +296,13 @@ def continue_spawing_wave(numOfEnemies, enemyList, spawn, time):
     direction = 1 if len(enemyList) % 2 == 0 else  -1
 
     currSpawn = spawn
-    if len(enemyList) ==0:
-        enemyList.append(Enemy(screen, 750, spawn, direction))
-        return True
-    if len(enemyList) < numOfEnemies and currSpawn < Y_SCREEN_SIZE and check_queue_full(enemyList, currSpawn):
-        enemyList.append(Enemy(screen, 750, currSpawn, direction))
-        return True
-    else:
-        currSpawn +=100
+    #this is the different spawns
+    for x in range(0,4):
         if len(enemyList) < numOfEnemies and currSpawn < Y_SCREEN_SIZE and check_queue_full(enemyList, currSpawn):
             enemyList.append(Enemy(screen, 750, currSpawn, direction))
             return True
         else:
-            currSpawn +=100
-            if len(enemyList) < numOfEnemies and currSpawn < Y_SCREEN_SIZE and check_queue_full(enemyList, currSpawn):
-                enemyList.append(Enemy(screen, 750, currSpawn, direction))
-                return True
-            else:
-                currSpawn +=100
-                if len(enemyList) < numOfEnemies and currSpawn < Y_SCREEN_SIZE and check_queue_full(enemyList, currSpawn):
-                    enemyList.append(Enemy(screen, 750, currSpawn, direction))
-                    return True
+            currSpawn+=100
     return False
 
 def check_queue_full(enemyList, yspawn):
@@ -487,5 +473,5 @@ def main():
             if event.type == pygame.KEYDOWN and event.key == pygame.K_r:
                 main()
 
-                
+
 main()
