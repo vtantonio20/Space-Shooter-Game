@@ -244,9 +244,6 @@ def events():
         if event.type == pygame.QUIT :
             sys.exit()
 
-def hurt_player(player, damage, wave):
-    player.do_damage(damage)
-
 def redraw_text(health, clock, wave):
     screenText = fpsFont.render(str(int(clock.get_fps())), 100, YELLOW)
     screen.blit(screenText, (25, 25))
@@ -314,7 +311,7 @@ def check_queue_full(enemyList, yspawn):
 def move_e_bullets(player, enemyBullets, enemyBulletDamage, wave):
     for ebullet in enemyBullets:
         if player.xpos <= ebullet.xpos <= player.xpos +50  and ebullet.ypos <=player.ypos + 40 and ebullet.ypos >= player.ypos:
-            hurt_player(player, enemyBulletDamage, wave)
+            player.do_damage(enemyBulletDamage)
             enemyBullets.pop(enemyBullets.index(ebullet))
             break
         elif X_SCREEN_SIZE > ebullet.xpos > 0:
